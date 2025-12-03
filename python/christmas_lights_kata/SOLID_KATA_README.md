@@ -1,52 +1,44 @@
-# Christmas Lights Kata
+# SOLID Kata - Mars Rover Edition 🚀
 
-## 🎄 Descripción del ejercicio
+Welcome to the SOLID Kata session! Today we will be practicing software design principles and refactoring techniques using the classic **Mars Rover** exercise.
 
-Esta kata consiste en una cuadrícula de luces (por defecto **1000 × 1000**) que pueden estar **encendidas** o **apagadas**.  A partir de un fichero de instrucciones (ver `instructions.md`) se deben aplicar operaciones de:
+## 🎯 Objectives
 
-- `turn on x1,y1 through x2,y2`
-- `turn off x1,y1 through x2,y2`
-- `toggle x1,y1 through x2,y2`
+- **Apply SOLID Principles**
+- **Refactoring**: Improve code structure without changing behavior.
+- **Pair Programming**: Collaborate and learn from your partner.
 
-Al final del proceso hay que responder **¿cuántas luces quedan encendidas?**.
+## 📅 Schedule
 
-## 📦 Código base
+1.  **Intro to SOLID** (by Nabeel) - Brief refresher on the principles.
+2.  **Kata Execution** - Hands-on coding in pairs.
+3.  **Retrospective** - Share learnings and discuss challenges.
 
-En `src/lights.py` encontrarás una única clase **`ChristmasLights`** que combina:
+## 🤖 The Kata: Mars Rover
 
-1. La representación de la cuadrícula.
-2. La lógica de manipulación (encender, apagar, alternar).
-3. Un parser muy simple de las líneas de instrucciones.
-4. Un método de renderizado para depuración.
+We will be working on the **Mars Rover** kata.
 
-## 🛠️ Qué debes hacer
+👉 **[Read the full Kata Requirements here](MARS_ROVER_KATA.md)**
+🔗 **Original Source**: [https://www.codurance.com/katas/mars-rover](https://www.codurance.com/katas/mars-rover)
 
-1. **Ejecuta la kata** para comprobar que funciona tal cual está:
+**Goal**: Develop an API that moves a rover around on a grid.
+**Focus**: How can we design this so adding new commands or obstacles is easy? 
 
-   ```bash
-   python3 -m christmas_lights_kata.src.controller christmas_lights_kata/instructions.md
-   ```
+## ⚔️ Dynamics & Rules
 
-   Debería imprimirse el número de luces encendidas.
-   - **SRP** – Separa la lógica de la cuadrícula, el parser y la presentación en clases diferentes.
-   - **OCP** – Introduce una abstracción `BaseLight` y permite añadir nuevos tipos de luz sin modificar la cuadrícula.
-   - **LSP** – Asegúrate de que cualquier sub‑clase de `BaseLight` pueda usarse en la cuadrícula.
-   - **ISP** – Crea interfaces pequeñas (`Switchable`, `InstructionParser`, `Renderable`).
-   - **DIP** – Haz que el controlador dependa de abstracciones y no de implementaciones concretas.
-2. **Añade pruebas** (por ejemplo con `pytest`) que verifiquen que:
-   - Cada operación afecta a la región correcta.
-   - El número de luces encendidas después de aplicar todas las instrucciones coincide con la solución esperada.
-3. **Documenta** cualquier cambio importante en este `README` (por ejemplo, nuevos archivos o clases creadas).
+- **Format**: Pair Programming.
+- **Style**: Ping-Pong.
+    - **Ping**: Person A writes a failing test.
+    - **Pong**: Person B writes the code to pass the test.
+    - **Refactor**: Both refactor together.
+    - **Swap**: Person B writes the next failing test.
+- **Rotation**: Switch roles every **5 minutes**.
+    - 💡 **Tip**: Use `make rotate MSG="Refactored movement"` to auto-run tests and commit!
 
-## ✅ Criterios de éxito
+### 🌶️ Spicy Constraints 
+**🙅‍♀️ No AI Assistance**: Solve the kata without AI tools so the focus stays on design thinking and collaboration.
 
-- El proyecto compila y la kata se ejecuta sin errores.
-- El número de luces encendidas es correcto.
+## 📝 Feedback
 
-## 📚 Recursos útiles
+We value your feedback to improve future sessions!
 
-- [Principios SOLID – Nabeel's](https://docs.google.com/presentation/d/1uX26evBBGtGahxOkK_N5CLJB3tL9te2iu6kyxGdpUxo/edit?slide=id.gcb9a3abeb_0_23#slide=id.gcb9a3abeb_0_23)
-- [Kata‑Log – Christmas Lights Kata](https://kata-log.rocks/christmas-lights-kata)
-
----
-*Diviértete refactorizando y aprendiendo SOLID mientras enciendes luces navideñas.*
