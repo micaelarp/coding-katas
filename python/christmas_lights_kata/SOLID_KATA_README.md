@@ -1,6 +1,6 @@
-# SOLID Kata - Mars Rover Edition 🚀
+# SOLID Kata - Christmas Lights Edition 🎄
 
-Welcome to the SOLID Kata session! Today we will be practicing software design principles and refactoring techniques using the classic **Mars Rover** exercise.
+Welcome to the SOLID Kata session! Today we will be practicing software design principles and refactoring techniques using the classic **Christmas Lights** exercise.
 
 ## 🎯 Objectives
 
@@ -14,15 +14,15 @@ Welcome to the SOLID Kata session! Today we will be practicing software design p
 2.  **Kata Execution** - Hands-on coding in pairs.
 3.  **Retrospective** - Share learnings and discuss challenges.
 
-## 🤖 The Kata: Mars Rover
+## 🎄 The Kata: Christmas Lights
 
-We will be working on the **Mars Rover** kata.
+We will be working on the **Christmas Lights** kata.
 
-👉 **[Read the full Kata Requirements here](MARS_ROVER_KATA.md)**
-🔗 **Original Source**: [https://www.codurance.com/katas/mars-rover](https://www.codurance.com/katas/mars-rover)
+👉 **[Read the full Kata Requirements here](instructions.md)**
+🔗 **Original Source**: [https://kata-log.rocks/christmas-lights-kata](https://kata-log.rocks/christmas-lights-kata)
 
-**Goal**: Develop an API that moves a rover around on a grid.
-**Focus**: How can we design this so adding new commands or obstacles is easy? 
+**Goal**: Develop an API that manipulates a grid of Christmas lights according to a set of instructions.
+**Focus**: How can we design this so adding new commands or behaviors is easy?
 
 ## ⚔️ Dynamics & Rules
 
@@ -33,7 +33,7 @@ We will be working on the **Mars Rover** kata.
     - **Refactor**: Both refactor together.
     - **Swap**: Person B writes the next failing test.
 - **Rotation**: Switch roles every **5 minutes**.
-    - 💡 **Tip**: Use `make rotate MSG="Refactored movement"` to auto-run tests and commit!
+    - 💡 **Tip**: Use `make rotate "Refactored Christmas Lights"` to auto-run tests and commit!
 
 ### 🌶️ Spicy Constraints 
 **🙅‍♀️ No AI Assistance**: Solve the kata without AI tools so the focus stays on design thinking and collaboration.
@@ -41,4 +41,3 @@ We will be working on the **Mars Rover** kata.
 ## 📝 Feedback
 
 We value your feedback to improve future sessions!
-
