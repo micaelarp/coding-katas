@@ -23,11 +23,16 @@ A kata is a programming exercise that you practice repeatedly to improve your sk
     ```bash
     make rotate "description of what you did"
     ```
+4. Final step before finishing the kata
+
+    Each team should execute the cleanup command for their branch to leave everything ready for the next kata:
+
+    ```bash
+    make cleanup branch=teamX
+    ```
 
 ## Contributing
 
 This is a practice repository. Feel free to fork this repo and create your own kata exercises!
 
 Happy coding! 🚀
-
-

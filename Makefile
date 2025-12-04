@@ -39,5 +39,8 @@ docker-cleanup: _guard-docker ## Purge all Docker images in the system
 	$(DOCKER_COMMAND) down -v
 	docker system prune -f
 
+cleanup:
+	bash python/scripts/reset_kata_branches.sh $(branch)
+
 _guard-docker:
 	@command -v docker >/dev/null 2>&1 || { echo >&2 "Docker no está instalado. Abortando."; exit 1; }
