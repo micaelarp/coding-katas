@@ -18,6 +18,9 @@ timestamp() {
 echo "[pp_commit] Adding changes..."
 git add -A
 
+# Ensure pp_rotate.sh is always executable
+chmod +x python/scripts/pp_rotate.sh
+
 DEFAULT_PREFIX="PP rotation"
 COMMIT_MSG="${DEFAULT_PREFIX} | $(timestamp)"
 if [[ -n "${PAIR_DETAIL}" ]]; then
@@ -29,10 +32,17 @@ if ! git commit -m "${COMMIT_MSG}"; then
   echo "[pp_commit] Nothing to commit. Proceeding to push."
 fi
 
+# Detect current branch
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+# Try to push, if fails, set upstream and push
 echo "[pp_commit] Pushing..."
-git push || {
-  echo "[pp_commit] Push failed. Check your remote/branch permissions." >&2
-  exit 1
-}
+if ! git push origin "$CURRENT_BRANCH"; then
+  echo "[pp_commit] Push failed. Trying to set upstream and push..." >&2
+  git push --set-upstream origin "$CURRENT_BRANCH" || {
+    echo "[pp_commit] Push with upstream also failed. Check your remote/branch permissions." >&2
+    exit 1
+  }
+fi
 
 echo "[pp_commit] Done."

@@ -16,6 +16,10 @@ fi
 # Cambiar ROOT_DIR para que apunte a la raíz del proyecto
 ROOT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../.." && pwd)
 
+# Detect current branch
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+# Run tests
 echo "[pp_rotate] Running tests..."
 (
   cd "$ROOT_DIR"
@@ -31,5 +35,9 @@ echo "[pp_rotate] Tests passed. Committing rotation..."
   fi
   bash python/scripts/pp_commit.sh "${COMMIT_DETAILS}"
 )
+
+# Always set upstream and push to branch with same name
+echo "[pp_rotate] Pushing to remote..."
+git push --set-upstream origin "$CURRENT_BRANCH"
 
 echo "[pp_rotate] Rotation complete."
