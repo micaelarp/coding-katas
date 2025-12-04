@@ -1,5 +1,13 @@
 # Kata time
 
+### Repository Purpose & How to Add Katas
+
+This repository is meant to grow with new katas for practicing programming, design, and teamwork. To add a new kata, simply create a folder for it inside the language you want to use (e.g., `python/your_kata_name`).
+
+### Repository Origin
+
+This repository was originally cloned from: [https://github.com/codurance/katalyst-kickstart](https://github.com/codurance/katalyst-kickstart)
+
 ## What is a Kata?
 
 A kata is a programming exercise that you practice repeatedly to improve your skills. Through deliberate practice and repetition, you develop muscle memory for good coding habits, TDD workflows, and collaborative programming techniques.
