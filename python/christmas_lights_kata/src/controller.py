@@ -12,7 +12,8 @@ from .action import LightAction
 
 def apply_commands(grid: LightGrid, commands: List[str]) -> None:
     """
-    Apply a list of command lines to the grid.
+    Apply a list of command lines to the grid. Each line must be a valid instruction.
+    Raises ValueError if any command is invalid.
     """
     for line in commands:
         action, start, end = InstructionParser.parse(line)
@@ -22,18 +23,20 @@ def apply_commands(grid: LightGrid, commands: List[str]) -> None:
 
 def load_instructions(path: Path) -> List[str]:
     """
-    Load and filter valid instruction lines from a file.
+    Load all non-empty, non-comment instruction lines from a file.
+    No validation here; parser will validate each line.
     """
     return [
         ln
         for ln in path.read_text().splitlines()
-        if ln.strip() and not ln.lstrip().startswith("#") and InstructionParser._COMMAND_RE.match(ln.strip())
+        if ln.strip() and not ln.lstrip().startswith("#")
     ]
 
 
 def main() -> None:
     """
     Main entry point for running the Christmas Lights Kata.
+    Parses arguments, loads instructions, applies commands, and prints result.
     """
     import argparse
 
@@ -46,9 +49,13 @@ def main() -> None:
     args = parser.parse_args()
 
     grid = LightGrid()
-    commands = load_instructions(args.instructions)
-    apply_commands(grid, commands)
-    print(f"Lights lit: {grid.count_lit()}")
+    try:
+        commands = load_instructions(args.instructions)
+        apply_commands(grid, commands)
+        print(f"Lights lit: {grid.count_lit()}")
+    except Exception as e:
+        print(f"Error: {e}")
+        exit(1)
 
 
 if __name__ == "__main__":
