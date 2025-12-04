@@ -3,6 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import List
 
+from .commands import get_command
 from .instruction_parser import InstructionParser
 from .lights import LightGrid
 
@@ -10,14 +11,8 @@ from .lights import LightGrid
 def apply_commands(grid: LightGrid, commands: List[str]) -> None:
     for line in commands:
         action, start, end = InstructionParser.parse(line)
-        if action == "on":
-            grid.turn_on_region(start, end)
-        elif action == "off":
-            grid.turn_off_region(start, end)
-        elif action == "toggle":
-            grid.toggle_region(start, end)
-        else:
-            raise RuntimeError(f"Unsupported action: {action}")
+        command = get_command(action)
+        command.apply(grid, start, end)
 
 
 def load_instructions(path: Path) -> List[str]:
