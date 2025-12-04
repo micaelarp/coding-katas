@@ -19,9 +19,6 @@ ROOT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../.." && pwd)
 # Detect current branch
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
-# Check if branch has upstream
-HAS_UPSTREAM=$(git rev-parse --symbolic-full-name --verify @{u} >/dev/null 2>&1 && echo 1 || echo 0)
-
 # Run tests
 echo "[pp_rotate] Running tests..."
 (
@@ -39,12 +36,8 @@ echo "[pp_rotate] Tests passed. Committing rotation..."
   bash python/scripts/pp_commit.sh "${COMMIT_DETAILS}"
 )
 
-# Push branch (set upstream if needed)
+# Always set upstream and push to branch with same name
 echo "[pp_rotate] Pushing to remote..."
-if [[ "$HAS_UPSTREAM" -eq 0 ]]; then
-  git push --set-upstream origin "$CURRENT_BRANCH"
-else
-  git push origin "$CURRENT_BRANCH"
-fi
+git push --set-upstream origin "$CURRENT_BRANCH"
 
 echo "[pp_rotate] Rotation complete."

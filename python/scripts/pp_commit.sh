@@ -18,6 +18,9 @@ timestamp() {
 echo "[pp_commit] Adding changes..."
 git add -A
 
+# Ensure pp_rotate.sh is always executable
+chmod +x python/scripts/pp_rotate.sh
+
 DEFAULT_PREFIX="PP rotation"
 COMMIT_MSG="${DEFAULT_PREFIX} | $(timestamp)"
 if [[ -n "${PAIR_DETAIL}" ]]; then
