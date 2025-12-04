@@ -60,6 +60,11 @@ class ChristmasLights:
             lines.append("".join("█" if cell else "·" for cell in row[:size]))
         return "\n".join(lines)
 
+    def is_lit(self, pos: LightPosition) -> bool:
+        """Return True if the light at pos is on. Raises ValueError if out of bounds."""
+        self._validate(pos)
+        return self._grid[pos.y][pos.x]
+
 
 class LightGrid:
     """
@@ -94,5 +99,4 @@ class LightGrid:
 
     def is_lit(self, pos: LightPosition) -> bool:
         """Return True if the light at pos is on. Raises ValueError if out of bounds."""
-        self._lights._validate(pos)
-        return self._lights._grid[pos.y][pos.x]
+        return self._lights.is_lit(pos)
