@@ -8,7 +8,7 @@ def test_turn_on_command():
     cmd.apply(grid, LightPosition(0, 0), LightPosition(2, 2))
     for y in range(3):
         for x in range(3):
-            assert grid.is_lit(x, y)
+            assert grid.is_lit(LightPosition(x, y))
 
 def test_turn_off_command():
     grid = LightGrid(width=3, height=3)
@@ -17,7 +17,7 @@ def test_turn_off_command():
     cmd.apply(grid, LightPosition(1, 1), LightPosition(2, 2))
     for y in range(1, 3):
         for x in range(1, 3):
-            assert not grid.is_lit(x, y)
+            assert not grid.is_lit(LightPosition(x, y))
 
 def test_toggle_command():
     grid = LightGrid(width=3, height=3)
@@ -26,4 +26,4 @@ def test_toggle_command():
     cmd.apply(grid, LightPosition(0, 0), LightPosition(2, 2))
     for y in range(3):
         for x in range(3):
-            assert not grid.is_lit(x, y)
+            assert not grid.is_lit(LightPosition(x, y))

@@ -87,6 +87,7 @@ class LightGrid:
         """Return a string representation of the grid (for debugging)."""
         return self._lights.render(size)
 
-    def is_lit(self, x: int, y: int) -> bool:
-        """Return True if the light at (x, y) is on."""
-        return self._lights._grid[y][x]
+    def is_lit(self, pos: LightPosition) -> bool:
+        """Return True if the light at pos is on."""
+        self._lights._validate(pos)
+        return self._lights._grid[pos.y][pos.x]
