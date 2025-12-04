@@ -36,7 +36,8 @@ We will be working on the **Christmas Lights** kata.
     - 💡 **Tip**: Use `make rotate "Refactored Christmas Lights"` to auto-run tests and commit!
 
 ### 🌶️ Spicy Constraints 
-**🙅‍♀️ No AI Assistance**: Solve the kata without AI tools so the focus stays on design thinking and collaboration.
+- **🙅‍♀️ No AI Assistance**: Solve the kata without AI tools so the focus stays on design thinking and collaboration.
+- **Baby steps**: Only add one feature or refactor at a time.
 
 ## 📝 Feedback
 
