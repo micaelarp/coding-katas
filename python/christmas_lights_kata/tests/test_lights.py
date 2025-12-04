@@ -11,7 +11,7 @@ def test_turn_on_region_affects_correct_cells():
     for y in range(grid.height):
         for x in range(grid.width):
             expected = 0 <= x <= 2 and 0 <= y <= 2
-            assert (grid._grid[y][x] is True) == expected
+            assert grid.is_lit(x, y) is expected
 
 
 def test_turn_off_region_turns_off_only_specified_area():
@@ -21,7 +21,7 @@ def test_turn_off_region_turns_off_only_specified_area():
     assert grid.count_lit() == 21
     for y in range(1, 3):
         for x in range(1, 3):
-            assert grid._grid[y][x] is False
+            assert grid.is_lit(x, y) is False
 
 
 def test_toggle_region_flips_state():
@@ -29,8 +29,8 @@ def test_toggle_region_flips_state():
     apply_commands(grid, ["turn on 0,0 through 1,1"])
     apply_commands(grid, ["toggle 0,0 through 2,2"])
     assert grid.count_lit() == 5
-    assert grid._grid[0][0] is False
-    assert grid._grid[2][2] is True
+    assert grid.is_lit(0, 0) is False
+    assert grid.is_lit(2, 2) is True
 
 
 def test_load_instructions_filters_non_commands(tmp_path):

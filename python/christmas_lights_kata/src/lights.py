@@ -46,12 +46,26 @@ class ChristmasLights:
         return "\n".join(lines)
 
 
-class LightGrid(ChristmasLights):
+class LightGrid:
+    def __init__(self, width: int = 1000, height: int = 1000):
+        self._lights = ChristmasLights(width, height)
+        self.width = width
+        self.height = height
+
     def turn_on_region(self, start: tuple[int, int], end: tuple[int, int]) -> None:
-        self.turn_on(start, end)
+        self._lights.turn_on(start, end)
 
     def turn_off_region(self, start: tuple[int, int], end: tuple[int, int]) -> None:
-        self.turn_off(start, end)
+        self._lights.turn_off(start, end)
 
     def toggle_region(self, start: tuple[int, int], end: tuple[int, int]) -> None:
-        self.toggle(start, end)
+        self._lights.toggle(start, end)
+
+    def count_lit(self) -> int:
+        return self._lights.count_lit()
+
+    def render(self, size: int = 10) -> str:
+        return self._lights.render(size)
+
+    def is_lit(self, x: int, y: int) -> bool:
+        return self._lights._grid[y][x]

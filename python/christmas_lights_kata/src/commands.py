@@ -6,21 +6,15 @@ class Command:
 
 class TurnOnCommand(Command):
     def apply(self, grid, start, end):
-        for y in range(start[1], end[1]+1):
-            for x in range(start[0], end[0]+1):
-                grid._grid[y][x] = True
+        grid.turn_on_region(start, end)
 
 class TurnOffCommand(Command):
     def apply(self, grid, start, end):
-        for y in range(start[1], end[1]+1):
-            for x in range(start[0], end[0]+1):
-                grid._grid[y][x] = False
+        grid.turn_off_region(start, end)
 
 class ToggleCommand(Command):
     def apply(self, grid, start, end):
-        for y in range(start[1], end[1]+1):
-            for x in range(start[0], end[0]+1):
-                grid._grid[y][x] = not grid._grid[y][x]
+        grid.toggle_region(start, end)
 
 def get_command(action: str) -> Command:
     if action == "on":
@@ -31,4 +25,3 @@ def get_command(action: str) -> Command:
         return ToggleCommand()
     else:
         raise ValueError(f"Unknown action: {action}")
-
