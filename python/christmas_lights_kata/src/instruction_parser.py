@@ -6,11 +6,10 @@ from .action import LightAction
 class InstructionParser:
     """
     Parses and validates instruction lines for grid commands.
-    - Accepts: 'turn on x1,y1 through x2,y2', 'turn off ...', 'toggle ...'.
-    - Coordinates must be integers >= 0.
-    - Returns (LightAction, LightPosition, LightPosition).
-    - Raises ValueError for invalid lines or coordinates.
-    Extensible: para agregar nuevos comandos, modificar _COMMAND_RE y _get_action.
+    Accepts: 'turn on x1,y1 through x2,y2', 'turn off ...', 'toggle ...'.
+    Coordinates must be integers >= 0.
+    Returns (LightAction, LightPosition, LightPosition).
+    Raises ValueError for invalid lines or coordinates.
     """
     _COMMAND_RE = re.compile(
         r"^(turn\s+(on|off)|toggle)\s+(-?\d+),(-?\d+)\s+through\s+(-?\d+),(-?\d+)$",
@@ -19,20 +18,12 @@ class InstructionParser:
 
     @staticmethod
     def _validate_coords(x1: int, y1: int, x2: int, y2: int) -> None:
-        """
-        Validates that all coordinates are non-negative integers.
-        Raises ValueError if any coordinate is negative.
-        """
         for val, name in zip([x1, y1, x2, y2], ["x1", "y1", "x2", "y2"]):
             if val < 0:
                 raise ValueError(f"Coordinate {name} must be >= 0, got {val}")
 
     @staticmethod
     def _get_action(action_str: str) -> LightAction:
-        """
-        Maps a string to a LightAction enum.
-        Raises ValueError if unknown.
-        """
         action_str = action_str.lower()
         if action_str == "on":
             return LightAction.TURN_ON
@@ -45,10 +36,6 @@ class InstructionParser:
 
     @staticmethod
     def parse(line: str) -> Tuple[LightAction, LightPosition, LightPosition]:
-        """
-        Parses a command line and returns (action, start, end).
-        Raises ValueError if the line is invalid or coordinates are not valid integers >= 0.
-        """
         line = line.strip()
         if not line:
             raise ValueError("Empty command line")

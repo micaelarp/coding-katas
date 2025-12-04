@@ -2,10 +2,7 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True)
 class LightPosition:
-    """
-    Immutable value object representing a position in the grid.
-    Used for all grid operations to ensure clarity and domain consistency.
-    """
+    """Immutable position in the grid."""
     x: int
     y: int
 
