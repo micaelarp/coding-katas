@@ -6,6 +6,7 @@ from typing import List
 from .commands import get_command
 from .instruction_parser import InstructionParser
 from .lights import LightGrid
+from .position import LightPosition
 
 
 def apply_commands(grid: LightGrid, commands: List[str]) -> None:

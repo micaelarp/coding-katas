@@ -1,5 +1,6 @@
 from __future__ import annotations
-from typing import List, Tuple
+from typing import List
+from .position import LightPosition
 
 
 class ChristmasLights:
@@ -14,36 +15,35 @@ class ChristmasLights:
         # Store the grid as a list of lists of booleans (True = on)
         self._grid: List[List[bool]] = [[False for _ in range(width)] for _ in range(height)]
 
-    def _validate(self, x: int, y: int) -> None:
+    def _validate(self, pos: LightPosition) -> None:
         """Raise ValueError if coordinates are out of bounds."""
-        if not (0 <= x < self.width and 0 <= y < self.height):
-            raise ValueError(f"Coordinates ({x},{y}) out of bounds")
+        if not (0 <= pos.x < self.width and 0 <= pos.y < self.height):
+            raise ValueError(f"Coordinates ({pos.x},{pos.y}) out of bounds")
 
-    def _region(self, start: Tuple[int, int], end: Tuple[int, int]) -> Tuple[int, int]:
+    def _region(self, start: LightPosition, end: LightPosition):
         """Yield all (y, x) positions in the rectangular region from start to end inclusive."""
-        x1, y1 = start
-        x2, y2 = end
-        x_start, x_end = sorted((x1, x2))
-        y_start, y_end = sorted((y1, y2))
+        x_start, x_end = sorted((start.x, end.x))
+        y_start, y_end = sorted((start.y, end.y))
         for y in range(y_start, y_end + 1):
             for x in range(x_start, x_end + 1):
-                self._validate(x, y)
-                yield y, x
+                pos = LightPosition(x, y)
+                self._validate(pos)
+                yield pos
 
-    def turn_on(self, start: Tuple[int, int], end: Tuple[int, int]) -> None:
+    def turn_on(self, start: LightPosition, end: LightPosition) -> None:
         """Turn on all lights in the region."""
-        for y, x in self._region(start, end):
-            self._grid[y][x] = True
+        for pos in self._region(start, end):
+            self._grid[pos.y][pos.x] = True
 
-    def turn_off(self, start: Tuple[int, int], end: Tuple[int, int]) -> None:
+    def turn_off(self, start: LightPosition, end: LightPosition) -> None:
         """Turn off all lights in the region."""
-        for y, x in self._region(start, end):
-            self._grid[y][x] = False
+        for pos in self._region(start, end):
+            self._grid[pos.y][pos.x] = False
 
-    def toggle(self, start: Tuple[int, int], end: Tuple[int, int]) -> None:
+    def toggle(self, start: LightPosition, end: LightPosition) -> None:
         """Toggle all lights in the region."""
-        for y, x in self._region(start, end):
-            self._grid[y][x] = not self._grid[y][x]
+        for pos in self._region(start, end):
+            self._grid[pos.y][pos.x] = not self._grid[pos.y][pos.x]
 
     def count_lit(self) -> int:
         """Return the number of lights that are on."""
@@ -67,15 +67,15 @@ class LightGrid:
         self.width: int = width
         self.height: int = height
 
-    def turn_on_region(self, start: Tuple[int, int], end: Tuple[int, int]) -> None:
+    def turn_on_region(self, start: LightPosition, end: LightPosition) -> None:
         """Turn on all lights in the region."""
         self._lights.turn_on(start, end)
 
-    def turn_off_region(self, start: Tuple[int, int], end: Tuple[int, int]) -> None:
+    def turn_off_region(self, start: LightPosition, end: LightPosition) -> None:
         """Turn off all lights in the region."""
         self._lights.turn_off(start, end)
 
-    def toggle_region(self, start: Tuple[int, int], end: Tuple[int, int]) -> None:
+    def toggle_region(self, start: LightPosition, end: LightPosition) -> None:
         """Toggle all lights in the region."""
         self._lights.toggle(start, end)
 

@@ -2,6 +2,7 @@ from pathlib import Path
 
 from python.christmas_lights_kata.src.controller import apply_commands, load_instructions
 from python.christmas_lights_kata.src.lights import LightGrid
+from python.christmas_lights_kata.src.position import LightPosition
 
 
 def test_turn_on_region_affects_correct_cells():

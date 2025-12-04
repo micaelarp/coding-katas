@@ -1,5 +1,6 @@
 import re
 from typing import Tuple
+from .position import LightPosition
 
 class InstructionParser:
     """
@@ -8,7 +9,7 @@ class InstructionParser:
     _COMMAND_RE = re.compile(r"^(turn\s+(on|off)|toggle)\s+(\d+),(\d+)\s+through\s+(\d+),(\d+)$", re.IGNORECASE)
 
     @staticmethod
-    def parse(line: str) -> Tuple[str, Tuple[int, int], Tuple[int, int]]:
+    def parse(line: str) -> Tuple[str, LightPosition, LightPosition]:
         """
         Parse a command line and return (action, start, end).
         Raises ValueError if the line is invalid.
@@ -23,6 +24,6 @@ class InstructionParser:
             action = m.group(2).lower()
         else:
             action = "toggle"
-        x1, y1 = int(m.group(3)), int(m.group(4))
-        x2, y2 = int(m.group(5)), int(m.group(6))
-        return action, (x1, y1), (x2, y2)
+        start = LightPosition(int(m.group(3)), int(m.group(4)))
+        end = LightPosition(int(m.group(5)), int(m.group(6)))
+        return action, start, end
