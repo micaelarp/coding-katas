@@ -5,15 +5,15 @@ from .action import LightAction
 
 class InstructionParser:
     """
-    Parses instruction lines for grid commands.
+    Parses instruction lines for grid commands. Validates format and coordinates.
     """
-    _COMMAND_RE = re.compile(r"^(turn\s+(on|off)|toggle)\s+(\d+),(\d+)\s+through\s+(\d+),(\d+)$", re.IGNORECASE)
+    _COMMAND_RE = re.compile(r"^(turn\s+(on|off)|toggle)\s+(-?\d+),(-?\d+)\s+through\s+(-?\d+),(-?\d+)$", re.IGNORECASE)
 
     @staticmethod
     def parse(line: str) -> Tuple[LightAction, LightPosition, LightPosition]:
         """
         Parse a command line and return (action, start, end).
-        Raises ValueError if the line is invalid.
+        Raises ValueError if the line is invalid or coordinates are not valid integers >= 0.
         """
         line = line.strip()
         if not line:
@@ -33,6 +33,14 @@ class InstructionParser:
             action = LightAction.TOGGLE
         else:
             raise ValueError(f"Unknown action: {action_str}")
-        start = LightPosition(int(m.group(3)), int(m.group(4)))
-        end = LightPosition(int(m.group(5)), int(m.group(6)))
+        try:
+            x1, y1 = int(m.group(3)), int(m.group(4))
+            x2, y2 = int(m.group(5)), int(m.group(6))
+        except ValueError:
+            raise ValueError("Coordinates must be integers")
+        for val, name in zip([x1, y1, x2, y2], ["x1", "y1", "x2", "y2"]):
+            if val < 0:
+                raise ValueError(f"Coordinate {name} must be >= 0, got {val}")
+        start = LightPosition(x1, y1)
+        end = LightPosition(x2, y2)
         return action, start, end
