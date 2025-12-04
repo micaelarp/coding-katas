@@ -31,7 +31,7 @@ In `src/lights.py` you will find a single class **`ChristmasLights`** that combi
    ```
 
    It should print the number of lights that are on.
-2. **Add tests** (for example with `pytest`) to verify that:
+2. **Add tests** :
    - Each operation affects the correct region.
    - The number of lights on after applying all instructions matches the expected solution.
 

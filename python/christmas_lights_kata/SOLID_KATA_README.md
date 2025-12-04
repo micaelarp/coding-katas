@@ -10,9 +10,9 @@ Welcome to the SOLID Kata session! Today we will be practicing software design p
 
 ## 📅 Schedule
 
-1.  **Intro to SOLID** (by Nabeel) - Brief refresher on the principles.
-2.  **Kata Execution** - Hands-on coding in pairs.
-3.  **Retrospective** - Share learnings and discuss challenges.
+1.  **Intro to SOLID** (by Nabeel) - Brief refresher on the principles. (20 mins)
+2.  **Kata Execution** - Hands-on coding in pairs.  (40 mins)
+3.  **Retrospective** - Share learnings and discuss challenges. (20 mins)
 
 ## 🎄 The Kata: Christmas Lights
 

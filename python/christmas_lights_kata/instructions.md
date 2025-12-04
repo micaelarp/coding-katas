@@ -1,5 +1,3 @@
-# instructions.md
-
 ## Kata Letter – Christmas Lights Kata
 
 **Objetivo**: Después de ejecutar una serie de operaciones sobre una cuadrícula de luces (por defecto 1000 × 1000), determinar cuántas luces quedan encendidas.
