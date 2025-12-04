@@ -5,14 +5,15 @@ from .position import LightPosition
 
 class ChristmasLights:
     """
-    Represents a grid of Christmas lights that can be turned on, off, or toggled.
+    Domain model for a grid of Christmas lights.
+    Handles turning on, off, and toggling lights in rectangular regions.
+    All coordinates are validated and out-of-bounds raise ValueError.
     """
 
     def __init__(self, width: int = 1000, height: int = 1000) -> None:
         """Initialize the grid with all lights off."""
         self.width: int = width
         self.height: int = height
-        # Store the grid as a list of lists of booleans (True = on)
         self._grid: List[List[bool]] = [[False for _ in range(width)] for _ in range(height)]
 
     def _validate(self, pos: LightPosition) -> None:
@@ -21,7 +22,10 @@ class ChristmasLights:
             raise ValueError(f"Coordinates ({pos.x},{pos.y}) out of bounds")
 
     def _region(self, start: LightPosition, end: LightPosition):
-        """Yield all (y, x) positions in the rectangular region from start to end inclusive."""
+        """
+        Yield all LightPosition in the rectangular region from start to end inclusive.
+        Handles inverted regions (start > end).
+        """
         x_start, x_end = sorted((start.x, end.x))
         y_start, y_end = sorted((start.y, end.y))
         for y in range(y_start, y_end + 1):
@@ -60,6 +64,7 @@ class ChristmasLights:
 class LightGrid:
     """
     Facade for ChristmasLights, exposing only region-based operations and safe inspection for tests.
+    All methods use LightPosition for clarity and domain consistency.
     """
 
     def __init__(self, width: int = 1000, height: int = 1000) -> None:
@@ -88,6 +93,6 @@ class LightGrid:
         return self._lights.render(size)
 
     def is_lit(self, pos: LightPosition) -> bool:
-        """Return True if the light at pos is on."""
+        """Return True if the light at pos is on. Raises ValueError if out of bounds."""
         self._lights._validate(pos)
         return self._lights._grid[pos.y][pos.x]
