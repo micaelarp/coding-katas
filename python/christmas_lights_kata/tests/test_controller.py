@@ -1,5 +1,9 @@
+import os
+import subprocess
 import sys
+
 import pytest
+
 from python.christmas_lights_kata.src import controller
 
 
@@ -22,8 +26,6 @@ def test_main_runs_and_reports_lit_lights(tmp_path, capsys):
 
 def test_main_with_invalid_instruction(tmp_path):
     """Should print error and exit for invalid instructions (robust subprocess test)."""
-    import subprocess
-    import os
     instr = "invalid command"
     instr_path = tmp_path / "instr.md"
     instr_path.write_text(instr)
@@ -43,7 +45,6 @@ def test_main_with_empty_file(tmp_path):
     """Should report zero lights lit for empty instruction file."""
     instr_path = tmp_path / "instr.md"
     instr_path.write_text("")
-    import subprocess, os
     env = os.environ.copy()
     env["PYTHONPATH"] = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../.."))
     result = subprocess.run([
@@ -60,7 +61,6 @@ def test_main_with_only_comments(tmp_path):
     """Should report zero lights lit for file with only comments."""
     instr_path = tmp_path / "instr.md"
     instr_path.write_text("# comment\n# another comment")
-    import subprocess, os
     env = os.environ.copy()
     env["PYTHONPATH"] = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../.."))
     result = subprocess.run([
@@ -78,7 +78,6 @@ def test_main_with_extra_spaces(tmp_path):
     instr = "  turn on 0,0 through 0,0  "
     instr_path = tmp_path / "instr.md"
     instr_path.write_text(instr)
-    import subprocess, os
     env = os.environ.copy()
     env["PYTHONPATH"] = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../.."))
     result = subprocess.run([
@@ -96,7 +95,6 @@ def test_main_with_out_of_bounds(tmp_path):
     instr = "turn on -1,0 through 0,0"
     instr_path = tmp_path / "instr.md"
     instr_path.write_text(instr)
-    import subprocess, os
     env = os.environ.copy()
     env["PYTHONPATH"] = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../.."))
     result = subprocess.run([
