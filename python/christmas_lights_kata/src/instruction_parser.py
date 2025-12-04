@@ -21,6 +21,19 @@ class InstructionParser:
                 raise ValueError(f"Coordinate {name} must be >= 0, got {val}")
 
     @staticmethod
+    def _get_action(action_str: str) -> LightAction:
+        """Map a string to a LightAction enum, raising ValueError if unknown."""
+        action_str = action_str.lower()
+        if action_str == "on":
+            return LightAction.TURN_ON
+        elif action_str == "off":
+            return LightAction.TURN_OFF
+        elif action_str == "toggle":
+            return LightAction.TOGGLE
+        else:
+            raise ValueError(f"Unknown action: {action_str}")
+
+    @staticmethod
     def parse(line: str) -> Tuple[LightAction, LightPosition, LightPosition]:
         """
         Parse a command line and return (action, start, end).
@@ -32,15 +45,8 @@ class InstructionParser:
         m = InstructionParser._COMMAND_RE.match(line)
         if not m:
             raise ValueError(f"Invalid command format: {line!r}")
-        action_str = m.group(2).lower() if m.group(2) else "toggle"
-        if action_str == "on":
-            action = LightAction.TURN_ON
-        elif action_str == "off":
-            action = LightAction.TURN_OFF
-        elif action_str == "toggle":
-            action = LightAction.TOGGLE
-        else:
-            raise ValueError(f"Unknown action: {action_str}")
+        action_str = m.group(2) if m.group(2) else "toggle"
+        action = InstructionParser._get_action(action_str)
         try:
             x1, y1 = int(m.group(3)), int(m.group(4))
             x2, y2 = int(m.group(5)), int(m.group(6))
