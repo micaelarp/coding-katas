@@ -36,30 +36,6 @@ class ChristmasLights:
         for y, x in self._region(start, end):
             self._grid[y][x] = not self._grid[y][x]
 
-    def apply_line(self, line: str) -> None:
-        """Parse a single line like ``turn on 10,20 through 30,40`` or ``toggle 10,20 through 30,40`` and apply it.
-        """
-        parts = line.strip().split()
-        if len(parts) != 5:
-            return  # ignora líneas mal formateadas
-        if parts[0].lower() == "turn":
-            _, sub, start_str, _, end_str = parts
-            x1, y1 = map(int, start_str.split(","))
-            x2, y2 = map(int, end_str.split(","))
-            if sub == "on":
-                self.turn_on((x1, y1), (x2, y2))
-            elif sub == "off":
-                self.turn_off((x1, y1), (x2, y2))
-        elif parts[0].lower() == "toggle":
-            _, start_str, _, end_str, _ = parts[0], parts[1], parts[2], parts[3], parts[4]
-            x1, y1 = map(int, parts[1].split(","))
-            x2, y2 = map(int, parts[3].split(","))
-            self.toggle((x1, y1), (x2, y2))
-
-    def apply_instructions(self, lines: List[str]) -> None:
-        for line in lines:
-            self.apply_line(line)
-
     def count_lit(self) -> int:
         return sum(cell for row in self._grid for cell in row)
 
