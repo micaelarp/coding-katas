@@ -7,6 +7,7 @@ from .commands import get_command
 from .instruction_parser import InstructionParser
 from .lights import LightGrid
 from .position import LightPosition
+from .action import LightAction
 
 
 def apply_commands(grid: LightGrid, commands: List[str]) -> None:

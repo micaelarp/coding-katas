@@ -1,5 +1,6 @@
 from typing import Tuple
 from .position import LightPosition
+from .action import LightAction
 
 class Command:
     """
@@ -30,15 +31,15 @@ class ToggleCommand(Command):
     def apply(self, grid: object, start: LightPosition, end: LightPosition) -> None:
         grid.toggle_region(start, end)
 
-def get_command(action: str) -> Command:
+def get_command(action: LightAction) -> Command:
     """
     Factory to get the correct command instance for the given action.
     """
-    if action == "on":
+    if action == LightAction.TURN_ON:
         return TurnOnCommand()
-    elif action == "off":
+    elif action == LightAction.TURN_OFF:
         return TurnOffCommand()
-    elif action == "toggle":
+    elif action == LightAction.TOGGLE:
         return ToggleCommand()
     else:
         raise ValueError(f"Unknown action: {action}")
