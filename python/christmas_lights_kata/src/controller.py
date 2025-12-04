@@ -9,6 +9,9 @@ from .lights import LightGrid
 
 
 def apply_commands(grid: LightGrid, commands: List[str]) -> None:
+    """
+    Apply a list of command lines to the grid.
+    """
     for line in commands:
         action, start, end = InstructionParser.parse(line)
         command = get_command(action)
@@ -16,6 +19,9 @@ def apply_commands(grid: LightGrid, commands: List[str]) -> None:
 
 
 def load_instructions(path: Path) -> List[str]:
+    """
+    Load and filter valid instruction lines from a file.
+    """
     return [
         ln
         for ln in path.read_text().splitlines()
@@ -24,6 +30,9 @@ def load_instructions(path: Path) -> List[str]:
 
 
 def main() -> None:
+    """
+    Main entry point for running the Christmas Lights Kata.
+    """
     import argparse
 
     parser = argparse.ArgumentParser(description="Run the Christmas Lights Kata")
