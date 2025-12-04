@@ -6,24 +6,32 @@ A kata is a programming exercise that you practice repeatedly to improve your sk
 
 ## Getting Started
 
-1. Start the development environment:
+1. Move to your team branch (available branches: team1, team2, team3, ...):
+
+    ```bash
+    git checkout teamX
+    ```
+    Replace `teamX` with your assigned team branch.
+
+2. Start the development environment:
 
     ```bash
     make env-start
     ```
 
-2. Run the tests to verify everything works:
+3. Run the tests to verify everything works:
 
     ```bash
     make test
     ```
 
-3. Start practicing! Begin the TDD cycle with your pair.
+4. Start practicing! Begin the TDD cycle with your pair.
 
     ```bash
     make rotate "description of what you did"
     ```
-4. Final step before finishing the kata
+
+5. Final step before finishing the kata
 
     Each team should execute the cleanup command for their branch to leave everything ready for the next kata:
 
