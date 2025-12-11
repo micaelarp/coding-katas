@@ -26,6 +26,8 @@ This file describes the general organization and session dynamics for all katas 
 
 ## 🔤 Kata Letter and Limitations
 Each kata will have:
-- **Letter:** Brief description of the main objective
+- **Excerice:** Brief description of the main goal
 - **Limitations:** Optional restrictions to increase the challenge (e.g., no mouse, no AI, communication only through code, etc.)
 
+## 📚 Kata Sources
+For links to kata requirements, descriptions, and inspiration, see [KATAS_SOURCE.md](./KATAS_SOURCE.md).
