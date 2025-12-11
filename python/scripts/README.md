@@ -18,5 +18,9 @@ This directory contains scripts to facilitate the Pair Programming flow and rota
     - Example: `bash scripts/pp_rotate.sh "Refactored movement logic"`
 - **Fails Safe**: If tests fail, it aborts the rotation so you can fix the code before handing over.
 
-## `app-command.sh`
-(Legacy/System script) - Used by the Docker container entrypoint.
+## `reset_kata_branches.sh`
+**Usage**: `bash scripts/reset_kata_branches.sh <branch>`
+
+- Resets the specified branch (e.g., `team1`, `team2`, etc.) to match the latest `main` branch.
+- Useful for cleaning up team branches at the end of a kata session.
+- Example: `make cleanup branch=team1` or `bash scripts/reset_kata_branches.sh team1`
