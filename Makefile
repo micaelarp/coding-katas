@@ -11,7 +11,7 @@ test: ## Run test suite in project's main container
 # Ejecuta el script de rotación pasando el mensaje como argumento
 # Uso: make rotate "Refactorizado X"
 rotate: ## Run tests and commit rotation (Usage: make rotate "Refactored X")
-	bash python/scripts/pp_rotate.sh "$(filter-out $@,$(MAKECMDGOALS))"
+	bash scripts/pp_rotate.sh "$(filter-out $@,$(MAKECMDGOALS))"
 
 # Docker management
 build: _guard-docker ## Build project image
@@ -40,7 +40,7 @@ docker-cleanup: _guard-docker ## Purge all Docker images in the system
 	docker system prune -f
 
 cleanup:
-	bash python/scripts/reset_kata_branches.sh $(branch)
+	bash scripts/reset_kata_branches.sh $(branch)
 
 _guard-docker:
 	@command -v docker >/dev/null 2>&1 || { echo >&2 "Docker no está instalado. Abortando."; exit 1; }

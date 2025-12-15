@@ -2,7 +2,7 @@
 
 ### Repository Purpose & How to Add Katas
 
-This repository is meant to grow with new katas for practicing programming, design, and teamwork. To add a new kata, simply create a folder for it inside the language you want to use (e.g., `python/your_kata_name`).
+This repository is meant to grow with new katas for practicing programming, design, and teamwork. To add a new kata, simply create a folder for it inside the language you want to use (e.g., `python/your_kata_name`, `java/your_kata_name`).
 
 ### Repository Origin
 

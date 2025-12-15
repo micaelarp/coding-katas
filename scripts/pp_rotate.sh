@@ -14,7 +14,8 @@ if [[ -z "${MESSAGE}" ]]; then
 fi
 
 # Cambiar ROOT_DIR para que apunte a la raíz del proyecto
-ROOT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../.." && pwd)
+ROOT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
+
 
 # Detect current branch
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
@@ -33,7 +34,7 @@ echo "[pp_rotate] Tests passed. Committing rotation..."
   if [[ -n "${MESSAGE}" ]]; then
     COMMIT_DETAILS="${COMMIT_DETAILS} | ${MESSAGE}"
   fi
-  bash python/scripts/pp_commit.sh "${COMMIT_DETAILS}"
+  bash scripts/pp_commit.sh "${COMMIT_DETAILS}"
 )
 
 # Always set upstream and push to branch with same name
